@@ -1,4 +1,3 @@
-import './App.css'
 import { motion } from "motion/react"
 import { useState } from 'react'
 
@@ -33,7 +32,7 @@ function App() {
   }
 
   return (
-    <div className='w-screen mx-auto p-2 items-center flex flex-col justify-center h-screen bg-zinc-400'>
+    <div className='w-screen mx-auto p-2 items-center flex flex-col justify-center h-screen bg-[url("/bg.jpg")] bg-cover bg-no-repeat bg-center'>
 
       {!modalPremio && (
         <div className='flex flex-col items-center justify-center'>
@@ -43,7 +42,7 @@ function App() {
             src="/seta.png" />
 
           <motion.img
-            initial={{ rotate: 0 }} 
+            initial={{ rotate: 0 }}
             animate={{
               rotate: giro,
               transition: { duration: 2 }
@@ -51,7 +50,7 @@ function App() {
             className='size-100'
             src="/roleta.png" />
 
-          <button className='bg-blue-800 p-2 rounded-lg m-2 w-50 text-2xl'
+          <button className='bg-yellow-300 p-2 rounded-lg m-2 w-50 text-2xl shadow-lg hover:bg-yellow-400 transition-all duration-300'
             onClick={() => {
               console.log("Clicou")
               girarRoleta()
@@ -64,11 +63,20 @@ function App() {
 
       {modalPremio && (
         <div className='bg-black/60 fixed inset-0 flex items-center justify-center'>
-          <motion.div 
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }} 
-          className='w-[640px] h-[50%] rounded-xl px-6 shadow-lg bg-zinc-900 text-zinc-400 space-y-5 text-center flex justify-center items-center flex-col'>
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            className='w-[640px] h-[50%] rounded-xl px-6 shadow-lg bg-zinc-900 text-zinc-200 space-y-5 text-center flex justify-center items-center flex-col'>
             <h1 className='text-5xl'> Seu prêmio foi o {premio}</h1>
+            <button 
+            onClick={()=>{
+              setGiro(0)
+              setModalPremio(false)
+              setPremio(0)
+            }}
+            className='bg-yellow-300 p-2 py-4 rounded-lg m-2 w-80 text-2xl text-zinc-900 shadow-lg hover:bg-yellow-400 transition-all duration-300'>
+              Quer tentar novamente?
+            </button>
           </motion.div>
         </div>
       )}
